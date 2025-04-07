@@ -1,0 +1,61 @@
+
+
+module  reg_MEM_WB(
+    clk,
+    rst,
+    mul_finish,
+    EX_MEM_funct3,
+    EX_MEM_MemRead,
+    EX_MEM_RegWrite,
+    EX_MEM_MemtoReg,
+    EX_MEM_Rd,
+    EX_MEM_ALU_result,
+    MEMReadData,
+    MEM_WB_funct3,
+    MEM_WB_MemRead,
+    MEM_WB_RegWrite,
+    MEM_WB_MemtoReg,
+    MEM_WB_Rd,
+    MEM_WB_ALU_result,
+    MEM_WB_MEMReadData
+);
+input           clk,
+                rst,
+                mul_finish,
+                EX_MEM_MemRead,
+                EX_MEM_RegWrite,
+                EX_MEM_MemtoReg;
+input   [2:0]   EX_MEM_funct3;
+input   [4:0]   EX_MEM_Rd;
+input   [31:0]  MEMReadData,
+                EX_MEM_ALU_result;
+
+output  reg     MEM_WB_RegWrite,
+                MEM_WB_MemRead,
+                MEM_WB_MemtoReg; 
+output  reg[2:0]MEM_WB_funct3;
+output  reg[4:0]MEM_WB_Rd;
+output  reg[31:0]MEM_WB_MEMReadData,
+                MEM_WB_ALU_result;
+
+always@(posedge clk or posedge rst)
+if(rst) begin
+    MEM_WB_MemRead <= 1'b0;
+    MEM_WB_RegWrite <= 1'b0;
+    MEM_WB_MemtoReg <= 1'd0;
+    MEM_WB_funct3 <= 3'd0;
+    MEM_WB_Rd <= 5'd0;
+    MEM_WB_ALU_result <= 32'd0;
+    MEM_WB_MEMReadData <= 32'd0;
+end
+else begin
+    MEM_WB_MemRead <= (mul_finish)? EX_MEM_MemRead : MEM_WB_MemRead;
+    MEM_WB_RegWrite <= (mul_finish)? EX_MEM_RegWrite : MEM_WB_RegWrite;
+    MEM_WB_MemtoReg <= (mul_finish)? EX_MEM_MemtoReg : MEM_WB_MemtoReg;
+    MEM_WB_funct3 <= (mul_finish)? EX_MEM_funct3 : MEM_WB_funct3;
+    MEM_WB_Rd <= (mul_finish)? EX_MEM_Rd : MEM_WB_Rd;
+    MEM_WB_ALU_result <= (mul_finish)? EX_MEM_ALU_result : MEM_WB_ALU_result;
+    MEM_WB_MEMReadData <= (mul_finish)? MEMReadData : MEM_WB_MEMReadData;
+end
+
+endmodule
