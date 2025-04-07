@@ -1,0 +1,281 @@
+current_design "top"
+
+# define your clock
+clock -name "top.cpu_clk"     -domain cpu_clk     -tag cpu_clk    -period 10.0  -edge {0 5.0}
+clock -name "top.axi_clk"     -domain axi_clk     -tag axi_clk    -period 25.0  -edge {0 12.5}
+clock -name "top.dram_clk"    -domain dram_clk    -tag dram_clk   -period 30.4  -edge {0 15.2}
+clock -name "top.rom_clk"     -domain rom_clk     -tag rom_clk    -period 50.2  -edge {0 25.1}
+clock -name "top.sram_clk"    -domain sram_clk    -tag sram_clk   -period 11.0  -edge {0 5.5}
+
+reset -name "top.cpu_rst"  -value 1 -sync
+reset -name "top.axi_rst"  -value 1 -sync
+reset -name "top.rom_rst"  -value 1 -sync
+reset -name "top.dram_rst"  -value 1 -sync
+reset -name "top.sram_rst"  -value 1 -sync
+
+abstract_port -module SRAM -ports A0 A1 A2 A3 A4 A5 A6 A7 A8 A9 A10 A11 A12 A13 DO0 DO1 DO2 DO3 DO4 DO5 DO6 DO7 DO8 DO9 DO10 DO11 DO12 DO13 DO14 DO15 DO16 DO17 DO18 DO19 DO20 DO21 DO22 DO23 DO24 DO25 DO26 DO27 DO28 DO29 DO30 DO31 DI0 DI1 DI2 DI3 DI4 DI5 DI6 DI7 DI8 DI9 DI10 DI11 DI12 DI13 DI14 DI15 DI16 DI17 DI18 DI19 DI20 DI21 DI22 DI23 DI24 DI25 DI26 DI27 DI28 DI29 DI30 DI31 WEB0 WEB1 WEB2 WEB3 OE CS -clock sram_clk
+abstract_port -module tag_array -ports A0 A1 A2 A3 A4 A5 DO0 DO1 DO2 DO3 DO4 DO5 DO6 DO7 DO8 DO9 DO10 DO11 DO12 DO13 DO14 DO15 DO16 DO17 DO18 DO19 DO20 DO21 DI0 DI1 DI2 DI3 DI4 DI5 DI6 DI7 DI8 DI9 DI10 DI11 DI12 DI13 DI14 DI15 DI16 DI17 DI18 DI19 DI20 DI21 WEB OE CS -clock cpu_clk
+abstract_port -module SRAM -ports A0 A1 A2 A3 A4 A5 A6 A7 A8 A9 A10 A11 A12 A13 DO0 DO1 DO2 DO3 DO4 DO5 DO6 DO7 DO8 DO9 DO10 DO11 DO12 DO13 DO14 DO15 DO16 DO17 DO18 DO19 DO20 DO21 DO22 DO23 DO24 DO25 DO26 DO27 DO28 DO29 DO30 DO31 DI0 DI1 DI2 DI3 DI4 DI5 DI6 DI7 DI8 DI9 DI10 DI11 DI12 DI13 DI14 DI15 DI16 DI17 DI18 DI19 DI20 DI21 DI22 DI23 DI24 DI25 DI26 DI27 DI28 DI29 DI30 DI31 WEB0 WEB1 WEB2 WEB3 OE CS -clock sram_clk
+
+# ---------------- axi_m0_cdc ---------------- #
+# AR 
+define_tag -tag initState -name top.AXI.fifo_45_AR_m0.wptr          -value 0
+define_tag -tag initState -name top.AXI.fifo_45_AR_m0.rptr          -value 0
+define_tag -tag initState -name top.AXI.fifo_45_AR_m0.rptr_wq2     -value 0
+define_tag -tag initState -name top.AXI.fifo_45_AR_m0.wptr_rq2     -value 0
+
+# R
+define_tag -tag initState -name top.AXI.fifo_39_R_m0.wptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_39_R_m0.rptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_39_R_m0.rptr_wq2      -value 0
+define_tag -tag initState -name top.AXI.fifo_39_R_m0.wptr_rq2      -value 0
+
+# ---------------- axi_m1_cdc ---------------- #
+# AW
+define_tag -tag initState -name top.AXI.fifo_45_AW.wptr          -value 0
+define_tag -tag initState -name top.AXI.fifo_45_AW.rptr          -value 0
+define_tag -tag initState -name top.AXI.fifo_45_AW.rptr_wq2     -value 0
+define_tag -tag initState -name top.AXI.fifo_45_AW.wptr_rq2     -value 0
+
+# W
+define_tag -tag initState -name top.AXI.fifo_37_W_m.wptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_37_W_m.rptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_37_W_m.rptr_wq2      -value 0
+define_tag -tag initState -name top.AXI.fifo_37_W_m.wptr_rq2      -value 0
+
+# AR 
+define_tag -tag initState -name top.AXI.fifo_45_AR_m1.wptr          -value 0
+define_tag -tag initState -name top.AXI.fifo_45_AR_m1.rptr          -value 0
+define_tag -tag initState -name top.AXI.fifo_45_AR_m1.rptr_wq2     -value 0
+define_tag -tag initState -name top.AXI.fifo_45_AR_m1.wptr_rq2     -value 0
+
+# R
+define_tag -tag initState -name top.AXI.fifo_39_R_m1.wptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_39_R_m1.rptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_39_R_m1.rptr_wq2      -value 0
+define_tag -tag initState -name top.AXI.fifo_39_R_m1.wptr_rq2      -value 0
+
+# B
+define_tag -tag initState -name top.AXI.fifo_6_B.wptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_6_B.rptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_6_B.rptr_wq2      -value 0
+define_tag -tag initState -name top.AXI.fifo_6_B.wptr_rq2      -value 0
+
+
+
+# ---------------- axi_s0_cdc ---------------- #
+# AR 
+define_tag -tag initState -name top.AXI.fifo_49_AR_s0.wptr          -value 0
+define_tag -tag initState -name top.AXI.fifo_49_AR_s0.rptr          -value 0
+define_tag -tag initState -name top.AXI.fifo_49_AR_s0.rptr_wq2     -value 0
+define_tag -tag initState -name top.AXI.fifo_49_AR_s0.wptr_rq2     -value 0
+
+# R
+define_tag -tag initState -name top.AXI.fifo_43_R_s0.wptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_43_R_s0.rptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_43_R_s0.rptr_wq2      -value 0
+define_tag -tag initState -name top.AXI.fifo_43_R_s0.wptr_rq2      -value 0
+
+# ---------------- axi_s1_cdc ---------------- #
+# AW
+define_tag -tag initState -name top.AXI.fifo_49_AW_s1.wptr          -value 0
+define_tag -tag initState -name top.AXI.fifo_49_AW_s1.rptr          -value 0
+define_tag -tag initState -name top.AXI.fifo_49_AW_s1.rptr_wq2     -value 0
+define_tag -tag initState -name top.AXI.fifo_49_AW_s1.wptr_rq2     -value 0
+
+# W
+define_tag -tag initState -name top.AXI.fifo_37_W_s1.wptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_37_W_s1.rptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_37_W_s1.rptr_wq2      -value 0
+define_tag -tag initState -name top.AXI.fifo_37_W_s1.wptr_rq2      -value 0
+
+# AR 
+define_tag -tag initState -name top.AXI.fifo_49_AR_s1.wptr          -value 0
+define_tag -tag initState -name top.AXI.fifo_49_AR_s1.rptr          -value 0
+define_tag -tag initState -name top.AXI.fifo_49_AR_s1.rptr_wq2     -value 0
+define_tag -tag initState -name top.AXI.fifo_49_AR_s1.wptr_rq2     -value 0
+
+# R
+define_tag -tag initState -name top.AXI.fifo_43_R_s1.wptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_43_R_s1.rptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_43_R_s1.rptr_wq2      -value 0
+define_tag -tag initState -name top.AXI.fifo_43_R_s1.wptr_rq2      -value 0
+
+# B
+define_tag -tag initState -name top.AXI.fifo_10_B1.wptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_10_B1.rptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_10_B1.rptr_wq2      -value 0
+define_tag -tag initState -name top.AXI.fifo_10_B1.wptr_rq2      -value 0
+
+# ---------------- axi_s2_cdc ---------------- #
+# AW
+define_tag -tag initState -name top.AXI.fifo_49_AW_s2.wptr          -value 0
+define_tag -tag initState -name top.AXI.fifo_49_AW_s2.rptr          -value 0
+define_tag -tag initState -name top.AXI.fifo_49_AW_s2.rptr_wq2     -value 0
+define_tag -tag initState -name top.AXI.fifo_49_AW_s2.wptr_rq2     -value 0
+
+# W
+define_tag -tag initState -name top.AXI.fifo_37_W_s2.wptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_37_W_s2.rptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_37_W_s2.rptr_wq2      -value 0
+define_tag -tag initState -name top.AXI.fifo_37_W_s2.wptr_rq2      -value 0
+
+# AR 
+define_tag -tag initState -name top.AXI.fifo_49_AR_s2.wptr          -value 0
+define_tag -tag initState -name top.AXI.fifo_49_AR_s2.rptr          -value 0
+define_tag -tag initState -name top.AXI.fifo_49_AR_s2.rptr_wq2     -value 0
+define_tag -tag initState -name top.AXI.fifo_49_AR_s2.wptr_rq2     -value 0
+
+# R
+define_tag -tag initState -name top.AXI.fifo_43_R_s2.wptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_43_R_s2.rptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_43_R_s2.rptr_wq2      -value 0
+define_tag -tag initState -name top.AXI.fifo_43_R_s2.wptr_rq2      -value 0
+
+# B
+define_tag -tag initState -name top.AXI.fifo_10_B2.wptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_10_B2.rptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_10_B2.rptr_wq2      -value 0
+define_tag -tag initState -name top.AXI.fifo_10_B2.wptr_rq2      -value 0
+
+# ---------------- axi_s3_cdc ---------------- #
+# AW
+define_tag -tag initState -name top.AXI.fifo_49_AW_s3.wptr          -value 0
+define_tag -tag initState -name top.AXI.fifo_49_AW_s3.rptr          -value 0
+define_tag -tag initState -name top.AXI.fifo_49_AW_s3.rptr_wq2     -value 0
+define_tag -tag initState -name top.AXI.fifo_49_AW_s3.wptr_rq2     -value 0
+
+# W
+define_tag -tag initState -name top.AXI.fifo_37_W_s3.wptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_37_W_s3.rptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_37_W_s3.rptr_wq2      -value 0
+define_tag -tag initState -name top.AXI.fifo_37_W_s3.wptr_rq2      -value 0
+
+# AR 
+define_tag -tag initState -name top.AXI.fifo_49_AR_s3.wptr          -value 0
+define_tag -tag initState -name top.AXI.fifo_49_AR_s3.rptr          -value 0
+define_tag -tag initState -name top.AXI.fifo_49_AR_s3.rptr_wq2     -value 0
+define_tag -tag initState -name top.AXI.fifo_49_AR_s3.wptr_rq2     -value 0
+
+# R
+define_tag -tag initState -name top.AXI.fifo_43_R_s3.wptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_43_R_s3.rptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_43_R_s3.rptr_wq2      -value 0
+define_tag -tag initState -name top.AXI.fifo_43_R_s3.wptr_rq2      -value 0
+
+# B
+define_tag -tag initState -name top.AXI.fifo_10_B3.wptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_10_B3.rptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_10_B3.rptr_wq2      -value 0
+define_tag -tag initState -name top.AXI.fifo_10_B3.wptr_rq2      -value 0
+
+# ---------------- axi_s4_cdc ---------------- #
+# AW
+define_tag -tag initState -name top.AXI.fifo_49_AW_s4.wptr          -value 0
+define_tag -tag initState -name top.AXI.fifo_49_AW_s4.rptr          -value 0
+define_tag -tag initState -name top.AXI.fifo_49_AW_s4.rptr_wq2     -value 0
+define_tag -tag initState -name top.AXI.fifo_49_AW_s4.wptr_rq2     -value 0
+
+# W
+define_tag -tag initState -name top.AXI.fifo_37_W_s4.wptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_37_W_s4.rptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_37_W_s4.rptr_wq2      -value 0
+define_tag -tag initState -name top.AXI.fifo_37_W_s4.wptr_rq2      -value 0
+
+# AR 
+define_tag -tag initState -name top.AXI.fifo_49_AR_s4.wptr          -value 0
+define_tag -tag initState -name top.AXI.fifo_49_AR_s4.rptr          -value 0
+define_tag -tag initState -name top.AXI.fifo_49_AR_s4.rptr_wq2     -value 0
+define_tag -tag initState -name top.AXI.fifo_49_AR_s4.wptr_rq2     -value 0
+
+# R
+define_tag -tag initState -name top.AXI.fifo_43_R_s4.wptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_43_R_s4.rptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_43_R_s4.rptr_wq2      -value 0
+define_tag -tag initState -name top.AXI.fifo_43_R_s4.wptr_rq2      -value 0
+
+# B
+define_tag -tag initState -name top.AXI.fifo_10_B4.wptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_10_B4.rptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_10_B4.rptr_wq2      -value 0
+define_tag -tag initState -name top.AXI.fifo_10_B4.wptr_rq2      -value 0
+
+
+# ---------------- axi_s5_cdc ---------------- #
+# AW
+define_tag -tag initState -name top.AXI.fifo_49_AW_s5.wptr          -value 0
+define_tag -tag initState -name top.AXI.fifo_49_AW_s5.rptr          -value 0
+define_tag -tag initState -name top.AXI.fifo_49_AW_s5.rptr_wq2     -value 0
+define_tag -tag initState -name top.AXI.fifo_49_AW_s5.wptr_rq2     -value 0
+
+# W
+define_tag -tag initState -name top.AXI.fifo_37_W_s5.wptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_37_W_s5.rptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_37_W_s5.rptr_wq2      -value 0
+define_tag -tag initState -name top.AXI.fifo_37_W_s5.wptr_rq2      -value 0
+
+# AR 
+define_tag -tag initState -name top.AXI.fifo_49_AR_s5.wptr          -value 0
+define_tag -tag initState -name top.AXI.fifo_49_AR_s5.rptr          -value 0
+define_tag -tag initState -name top.AXI.fifo_49_AR_s5.rptr_wq2     -value 0
+define_tag -tag initState -name top.AXI.fifo_49_AR_s5.wptr_rq2     -value 0
+
+# R
+define_tag -tag initState -name top.AXI.fifo_43_R_s5.wptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_43_R_s5.rptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_43_R_s5.rptr_wq2      -value 0
+define_tag -tag initState -name top.AXI.fifo_43_R_s5.wptr_rq2      -value 0
+
+# B
+define_tag -tag initState -name top.AXI.fifo_10_B5.wptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_10_B5.rptr           -value 0
+define_tag -tag initState -name top.AXI.fifo_10_B5.rptr_wq2      -value 0
+define_tag -tag initState -name top.AXI.fifo_10_B5.wptr_rq2      -value 0
+
+
+waive -rule Ar_syncrst_setupcheck01
+
+#  async fifo source flip-flop is a static signal, no synchronization may be required
+# m0
+quasi_static -name top.AXI.fifo_45_AR_m0.datamemory
+quasi_static -name top.AXI.fifo_39_R_m0.datamemory
+# m1
+quasi_static -name top.AXI.fifo_45_AW.datamemory
+quasi_static -name top.AXI.fifo_37_W_m.datamemory
+quasi_static -name top.AXI.fifo_6_B.datamemory
+quasi_static -name top.AXI.fifo_45_AR_m1.datamemory
+quasi_static -name top.AXI.fifo_39_R_m1.datamemory
+# s0
+quasi_static -name top.AXI.fifo_49_AR_s0.datamemory
+quasi_static -name top.AXI.fifo_43_R_s0.datamemory
+# s1
+quasi_static -name top.AXI.fifo_49_AW_s1.datamemory
+quasi_static -name top.AXI.fifo_37_W_s1.datamemory
+quasi_static -name top.AXI.fifo_10_B1.datamemory
+quasi_static -name top.AXI.fifo_49_AR_s1.datamemory
+quasi_static -name top.AXI.fifo_43_R_s1.datamemory
+# s2
+quasi_static -name top.AXI.fifo_49_AW_s2.datamemory
+quasi_static -name top.AXI.fifo_37_W_s2.datamemory
+quasi_static -name top.AXI.fifo_10_B2.datamemory
+quasi_static -name top.AXI.fifo_49_AR_s2.datamemory
+quasi_static -name top.AXI.fifo_43_R_s2.datamemory
+# s3
+quasi_static -name top.AXI.fifo_49_AW_s3.datamemory
+quasi_static -name top.AXI.fifo_37_W_s3.datamemory
+quasi_static -name top.AXI.fifo_10_B3.datamemory
+quasi_static -name top.AXI.fifo_49_AR_s3.datamemory
+quasi_static -name top.AXI.fifo_43_R_s3.datamemory
+# s4
+quasi_static -name top.AXI.fifo_49_AW_s4.datamemory
+quasi_static -name top.AXI.fifo_37_W_s4.datamemory
+quasi_static -name top.AXI.fifo_10_B4.datamemory
+quasi_static -name top.AXI.fifo_49_AR_s4.datamemory
+quasi_static -name top.AXI.fifo_43_R_s4.datamemory
+# s5
+quasi_static -name top.AXI.fifo_49_AW_s5.datamemory
+quasi_static -name top.AXI.fifo_37_W_s5.datamemory
+quasi_static -name top.AXI.fifo_10_B5.datamemory
+quasi_static -name top.AXI.fifo_49_AR_s5.datamemory
+quasi_static -name top.AXI.fifo_43_R_s5.datamemory
+
