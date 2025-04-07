@@ -1,0 +1,250 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : top
+Version: O-2018.06
+Date   : Mon Nov 27 18:31:43 2023
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: WCCOM   Library: fsa0m_a_generic_core_ss1p62v125c
+Wire Load Model Mode: enclosed
+
+  Startpoint: cpu/cpu/cs_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: cpu/cpu/reg1/inst_out_reg[27]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  top                enG1000K              fsa0m_a_generic_core_ss1p62v125c
+  CPU                enG50K                fsa0m_a_generic_core_ss1p62v125c
+  Register_File      enG30K                fsa0m_a_generic_core_ss1p62v125c
+  Forwarding_ID      enG5K                 fsa0m_a_generic_core_ss1p62v125c
+  branch_comp_DW_cmp_9
+                     enG5K                 fsa0m_a_generic_core_ss1p62v125c
+  branch_comp        enG5K                 fsa0m_a_generic_core_ss1p62v125c
+  Instruction_Decode enG5K                 fsa0m_a_generic_core_ss1p62v125c
+  PC_Adder           enG5K                 fsa0m_a_generic_core_ss1p62v125c
+  read_arbiter       enG5K                 fsa0m_a_generic_core_ss1p62v125c
+  AXI                enG10K                fsa0m_a_generic_core_ss1p62v125c
+  read_data          enG5K                 fsa0m_a_generic_core_ss1p62v125c
+  CPU_wrapper        enG50K                fsa0m_a_generic_core_ss1p62v125c
+  read_addr          enG5K                 fsa0m_a_generic_core_ss1p62v125c
+  SCtrl_wrapper      enG30K                fsa0m_a_generic_core_ss1p62v125c
+  sensor_ctrl        enG30K                fsa0m_a_generic_core_ss1p62v125c
+  reg_IF_ID          enG5K                 fsa0m_a_generic_core_ss1p62v125c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             1.00       1.00
+  cpu/cpu/cs_reg/CK (QDFFP)                               0.00 #     1.00 r
+  cpu/cpu/cs_reg/Q (QDFFP)                                0.38       1.38 r
+  cpu/cpu/U11/O (BUF12CK)                                 0.20       1.58 r
+  cpu/cpu/U10/O (ND2T)                                    0.10       1.68 f
+  cpu/cpu/U9/O (INV8)                                     0.13       1.81 r
+  cpu/cpu/reg_file/Read_reg1[1] (Register_File)           0.00       1.81 r
+  cpu/cpu/reg_file/U5/O (OR3B2)                           0.22       2.03 r
+  cpu/cpu/reg_file/U4/O (BUF6)                            0.21       2.24 r
+  cpu/cpu/reg_file/U3/O (INV12)                           0.06       2.30 f
+  cpu/cpu/reg_file/U9/O (AN2T)                            0.23       2.53 f
+  cpu/cpu/reg_file/U8/O (BUF12CK)                         0.21       2.73 f
+  cpu/cpu/reg_file/U14/O (AO222S)                         0.50       3.23 f
+  cpu/cpu/reg_file/U13/O (NR4P)                           0.38       3.61 r
+  cpu/cpu/reg_file/U12/O (ND2F)                           0.08       3.70 f
+  cpu/cpu/reg_file/Read_data1[13] (Register_File)         0.00       3.70 f
+  cpu/cpu/forwarding_ID/RS1_Data[13] (Forwarding_ID)      0.00       3.70 f
+  cpu/cpu/forwarding_ID/U8/O (ND2F)                       0.08       3.77 r
+  cpu/cpu/forwarding_ID/U3/O (ND3HT)                      0.25       4.03 f
+  cpu/cpu/forwarding_ID/Data_rs1[13] (Forwarding_ID)      0.00       4.03 f
+  cpu/cpu/branch_comp/Data_rs1[13] (branch_comp)          0.00       4.03 f
+  cpu/cpu/branch_comp/lt_25/A[13] (branch_comp_DW_cmp_9)
+                                                          0.00       4.03 f
+  cpu/cpu/branch_comp/lt_25/U765/O (INV3)                 0.13       4.16 r
+  cpu/cpu/branch_comp/lt_25/U764/O (NR2P)                 0.13       4.29 f
+  cpu/cpu/branch_comp/lt_25/U766/O (NR2P)                 0.18       4.47 r
+  cpu/cpu/branch_comp/lt_25/U769/O (ND2F)                 0.10       4.57 f
+  cpu/cpu/branch_comp/lt_25/U773/O (NR2T)                 0.15       4.72 r
+  cpu/cpu/branch_comp/lt_25/U776/O (AOI12HP)              0.11       4.83 f
+  cpu/cpu/branch_comp/lt_25/U775/O (OAI12HP)              0.17       5.00 r
+  cpu/cpu/branch_comp/lt_25/GE_LT_GT_LE (branch_comp_DW_cmp_9)
+                                                          0.00       5.00 r
+  cpu/cpu/branch_comp/U13/O (AOI13H)                      0.13       5.13 f
+  cpu/cpu/branch_comp/U3/O (AN4B1)                        0.34       5.47 f
+  cpu/cpu/branch_comp/branch_taken (branch_comp)          0.00       5.47 f
+  cpu/cpu/Inst_Dec/branch_taken (Instruction_Decode)      0.00       5.47 f
+  cpu/cpu/Inst_Dec/U10/O (ND2P)                           0.11       5.57 r
+  cpu/cpu/Inst_Dec/U20/O (NR3HP)                          0.17       5.75 f
+  cpu/cpu/Inst_Dec/Flush (Instruction_Decode)             0.00       5.75 f
+  cpu/cpu/pc_adder/Flush (PC_Adder)                       0.00       5.75 f
+  cpu/cpu/pc_adder/U4/O (INV2)                            0.13       5.88 r
+  cpu/cpu/pc_adder/U3/O (AN3)                             0.30       6.18 r
+  cpu/cpu/pc_adder/U7/O (BUF6)                            0.21       6.38 r
+  cpu/cpu/pc_adder/U10/O (INV12CK)                        0.10       6.49 f
+  cpu/cpu/pc_adder/U16/O (INV6)                           0.10       6.58 r
+  cpu/cpu/pc_adder/U14/O (AOI22H)                         0.10       6.69 f
+  cpu/cpu/pc_adder/U11/O (OAI112HP)                       0.14       6.83 r
+  cpu/cpu/pc_adder/New_PC[30] (PC_Adder)                  0.00       6.83 r
+  cpu/cpu/U6/O (INV8CK)                                   0.11       6.93 f
+  cpu/cpu/U4/OB (MXL2HF)                                  0.21       7.15 r
+  cpu/cpu/inst_PC[30] (CPU)                               0.00       7.15 r
+  cpu/ARADDR_M0[30] (CPU_wrapper)                         0.00       7.15 r
+  AXI/ARADDR_M0[30] (AXI)                                 0.00       7.15 r
+  AXI/read_arbiter/ARADDR_M0[30] (read_arbiter)           0.00       7.15 r
+  AXI/read_arbiter/U18/O (INV12CK)                        0.08       7.23 f
+  AXI/read_arbiter/U15/O (AN4)                            0.25       7.47 f
+  AXI/read_arbiter/U14/O (ND2P)                           0.12       7.59 r
+  AXI/read_arbiter/U24/O (OAI22H)                         0.14       7.74 f
+  AXI/read_arbiter/U32/O (AO12)                           0.34       8.07 f
+  AXI/read_arbiter/U25/O (AOI13HP)                        0.19       8.27 r
+  AXI/read_arbiter/U3/O (OAI12HP)                         0.22       8.48 f
+  AXI/read_arbiter/AR_arbiter[2] (read_arbiter)           0.00       8.48 f
+  AXI/read_data/AR_arbiter[2] (read_data)                 0.00       8.48 f
+  AXI/read_data/U421/O (INV12CK)                          0.11       8.59 r
+  AXI/read_data/U4/O (INV4CK)                             0.09       8.67 f
+  AXI/read_data/U222/O (ND3HT)                            0.09       8.76 r
+  AXI/read_data/U298/O (INV2CK)                           0.08       8.84 f
+  AXI/read_data/U13/O (MOAI1HP)                           0.21       9.05 f
+  AXI/read_data/U12/O (ND2F)                              0.11       9.16 r
+  AXI/read_data/U11/O (ND2F)                              0.17       9.33 f
+  AXI/read_data/RVALID_M1 (read_data)                     0.00       9.33 f
+  AXI/RVALID_M1 (AXI)                                     0.00       9.33 f
+  cpu/RVALID_M1 (CPU_wrapper)                             0.00       9.33 f
+  cpu/U3/O (INV8)                                         0.10       9.43 r
+  cpu/U4/O (OAI22HT)                                      0.17       9.59 f
+  cpu/ARVALID_M0 (CPU_wrapper)                            0.00       9.59 f
+  AXI/ARVALID_M0 (AXI)                                    0.00       9.59 f
+  AXI/read_arbiter/ARVALID_M0 (read_arbiter)              0.00       9.59 f
+  AXI/read_arbiter/U5/O (INV8)                            0.12       9.71 r
+  AXI/read_arbiter/U4/O (MAOI1HT)                         0.18       9.89 f
+  AXI/read_arbiter/AR_arbiter[3] (read_arbiter)           0.00       9.89 f
+  AXI/read_addr/AR_arbiter[3] (read_addr)                 0.00       9.89 f
+  AXI/read_addr/U3/O (INV8)                               0.11      10.00 r
+  AXI/read_addr/U2/O (INV6CK)                             0.07      10.08 f
+  AXI/read_addr/U5/O (MOAI1H)                             0.22      10.30 f
+  AXI/read_addr/U10/O (BUF8)                              0.24      10.54 f
+  AXI/read_addr/ARADDR_S3[2] (read_addr)                  0.00      10.54 f
+  AXI/ARADDR_S3[2] (AXI)                                  0.00      10.54 f
+  SCtrl_wrapper/ARADDR[2] (SCtrl_wrapper)                 0.00      10.54 f
+  SCtrl_wrapper/U76/O (MOAI1HT)                           0.17      10.71 r
+  SCtrl_wrapper/U34/O (INV12CK)                           0.10      10.81 f
+  SCtrl_wrapper/sensor_ctrl/sctrl_addr[0] (sensor_ctrl)
+                                                          0.00      10.81 f
+  SCtrl_wrapper/sensor_ctrl/U964/O (INV6)                 0.09      10.89 r
+  SCtrl_wrapper/sensor_ctrl/U491/O (AN3)                  0.31      11.21 r
+  SCtrl_wrapper/sensor_ctrl/U378/O (BUF6)                 0.22      11.43 r
+  SCtrl_wrapper/sensor_ctrl/U129/O (BUF12CK)              0.24      11.67 r
+  SCtrl_wrapper/sensor_ctrl/U190/O (BUF12CK)              0.21      11.87 r
+  SCtrl_wrapper/sensor_ctrl/U211/O (AOI22S)               0.18      12.05 f
+  SCtrl_wrapper/sensor_ctrl/U207/O (AOI13H)               0.20      12.25 r
+  SCtrl_wrapper/sensor_ctrl/U196/O (NR4)                  0.29      12.54 f
+  SCtrl_wrapper/sensor_ctrl/U198/O (AN4B1)                0.25      12.79 f
+  SCtrl_wrapper/sensor_ctrl/U197/O (ND2P)                 0.12      12.91 r
+  SCtrl_wrapper/sensor_ctrl/sctrl_out[27] (sensor_ctrl)
+                                                          0.00      12.91 r
+  SCtrl_wrapper/U14/O (INV3)                              0.07      12.98 f
+  SCtrl_wrapper/U12/O (NR2F)                              0.12      13.11 r
+  SCtrl_wrapper/U13/O (BUF12CK)                           0.22      13.32 r
+  SCtrl_wrapper/RDATA[27] (SCtrl_wrapper)                 0.00      13.32 r
+  AXI/RDATA_S3[27] (AXI)                                  0.00      13.32 r
+  AXI/read_data/RDATA_S3[27] (read_data)                  0.00      13.32 r
+  AXI/read_data/U33/O (INV12)                             0.04      13.36 f
+  AXI/read_data/U274/O (MAOI1HT)                          0.21      13.57 r
+  AXI/read_data/RDATA_M0[27] (read_data)                  0.00      13.57 r
+  AXI/RDATA_M0[27] (AXI)                                  0.00      13.57 r
+  cpu/RDATA_M0[27] (CPU_wrapper)                          0.00      13.57 r
+  cpu/cpu/MEMReadInst[27] (CPU)                           0.00      13.57 r
+  cpu/cpu/reg1/inst_in[27] (reg_IF_ID)                    0.00      13.57 r
+  cpu/cpu/reg1/U57/O (MAOI1H)                             0.24      13.81 r
+  cpu/cpu/reg1/inst_out_reg[27]/D (QDFFN)                 0.00      13.81 r
+  data arrival time                                                 13.81
+
+  clock clk (rise edge)                                  13.00      13.00
+  clock network delay (ideal)                             1.00      14.00
+  clock uncertainty                                      -0.10      13.90
+  cpu/cpu/reg1/inst_out_reg[27]/CK (QDFFN)                0.00      13.90 r
+  library setup time                                     -0.09      13.81
+  data required time                                                13.81
+  --------------------------------------------------------------------------
+  data required time                                                13.81
+  data arrival time                                                -13.81
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: WDT_wrapper/WDT/counter_reg[0]
+              (rising edge-triggered flip-flop clocked by clk2)
+  Endpoint: WDT_wrapper/WDT/counter_reg[31]
+            (rising edge-triggered flip-flop clocked by clk2)
+  Path Group: clk2
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  top                enG1000K              fsa0m_a_generic_core_ss1p62v125c
+  WDT                enG5K                 fsa0m_a_generic_core_ss1p62v125c
+  WDT_DW01_inc_0     enG5K                 fsa0m_a_generic_core_ss1p62v125c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk2 (rise edge)                                  0.00       0.00
+  clock network delay (ideal)                             1.00       1.00
+  WDT_wrapper/WDT/counter_reg[0]/CK (DFCRBN)              0.00       1.00 r
+  WDT_wrapper/WDT/counter_reg[0]/Q (DFCRBN)               0.43       1.43 f
+  WDT_wrapper/WDT/add_55/A[0] (WDT_DW01_inc_0)            0.00       1.43 f
+  WDT_wrapper/WDT/add_55/U1_1_1/C (HA1)                   0.22       1.65 f
+  WDT_wrapper/WDT/add_55/U1_1_2/C (HA1)                   0.21       1.86 f
+  WDT_wrapper/WDT/add_55/U1_1_3/C (HA1)                   0.21       2.07 f
+  WDT_wrapper/WDT/add_55/U1_1_4/C (HA1)                   0.21       2.27 f
+  WDT_wrapper/WDT/add_55/U1_1_5/C (HA1)                   0.21       2.48 f
+  WDT_wrapper/WDT/add_55/U1_1_6/C (HA1)                   0.21       2.69 f
+  WDT_wrapper/WDT/add_55/U1_1_7/C (HA1)                   0.21       2.90 f
+  WDT_wrapper/WDT/add_55/U1_1_8/C (HA1)                   0.21       3.11 f
+  WDT_wrapper/WDT/add_55/U1_1_9/C (HA1)                   0.21       3.31 f
+  WDT_wrapper/WDT/add_55/U1_1_10/C (HA1)                  0.21       3.52 f
+  WDT_wrapper/WDT/add_55/U1_1_11/C (HA1)                  0.21       3.73 f
+  WDT_wrapper/WDT/add_55/U1_1_12/C (HA1)                  0.21       3.94 f
+  WDT_wrapper/WDT/add_55/U1_1_13/C (HA1)                  0.21       4.15 f
+  WDT_wrapper/WDT/add_55/U1_1_14/C (HA1)                  0.21       4.35 f
+  WDT_wrapper/WDT/add_55/U1_1_15/C (HA1)                  0.21       4.56 f
+  WDT_wrapper/WDT/add_55/U1_1_16/C (HA1)                  0.21       4.77 f
+  WDT_wrapper/WDT/add_55/U1_1_17/C (HA1)                  0.21       4.98 f
+  WDT_wrapper/WDT/add_55/U1_1_18/C (HA1)                  0.21       5.19 f
+  WDT_wrapper/WDT/add_55/U1_1_19/C (HA1)                  0.21       5.39 f
+  WDT_wrapper/WDT/add_55/U1_1_20/C (HA1)                  0.21       5.60 f
+  WDT_wrapper/WDT/add_55/U1_1_21/C (HA1)                  0.21       5.81 f
+  WDT_wrapper/WDT/add_55/U1_1_22/C (HA1)                  0.21       6.02 f
+  WDT_wrapper/WDT/add_55/U1_1_23/C (HA1)                  0.21       6.23 f
+  WDT_wrapper/WDT/add_55/U1_1_24/C (HA1)                  0.21       6.43 f
+  WDT_wrapper/WDT/add_55/U1_1_25/C (HA1)                  0.21       6.64 f
+  WDT_wrapper/WDT/add_55/U1_1_26/C (HA1)                  0.21       6.85 f
+  WDT_wrapper/WDT/add_55/U1_1_27/C (HA1)                  0.21       7.06 f
+  WDT_wrapper/WDT/add_55/U1_1_28/C (HA1)                  0.21       7.27 f
+  WDT_wrapper/WDT/add_55/U1_1_29/C (HA1)                  0.21       7.47 f
+  WDT_wrapper/WDT/add_55/U1_1_30/C (HA1)                  0.20       7.68 f
+  WDT_wrapper/WDT/add_55/U2/O (XOR2HS)                    0.18       7.86 r
+  WDT_wrapper/WDT/add_55/SUM[31] (WDT_DW01_inc_0)         0.00       7.86 r
+  WDT_wrapper/WDT/counter_reg[31]/D (DFCRBN)              0.00       7.86 r
+  data arrival time                                                  7.86
+
+  clock clk2 (rise edge)                                100.00     100.00
+  clock network delay (ideal)                             1.00     101.00
+  clock uncertainty                                      -0.10     100.90
+  WDT_wrapper/WDT/counter_reg[31]/CK (DFCRBN)             0.00     100.90 r
+  library setup time                                     -0.22     100.68
+  data required time                                               100.68
+  --------------------------------------------------------------------------
+  data required time                                               100.68
+  data arrival time                                                 -7.86
+  --------------------------------------------------------------------------
+  slack (MET)                                                       92.82
+
+
+1
